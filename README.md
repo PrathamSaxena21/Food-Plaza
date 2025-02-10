@@ -1,0 +1,1 @@
+<img src="media/media/k8s_argocd.png" alt="Project logo" width="1000">

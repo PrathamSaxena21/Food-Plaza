@@ -1,0 +1,78 @@
+# Replica count for your application.
+replicaCount: 2
+
+# Container image configuration.
+image:
+  repository: pabhi4881/foodplaza
+  pullPolicy: Always
+  tag: "latest"
+
+# Pull secrets for private registry (if needed).
+imagePullSecrets: []
+
+# Override the chart name (optional).
+nameOverride: ""
+fullnameOverride: ""
+
+# Service account configuration.
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  name: ""
+
+# Kubernetes pod annotations and labels.
+podAnnotations: {}
+podLabels: {}
+
+# Security context for the pod and container.
+podSecurityContext: {}
+securityContext: {}
+
+# Service configuration.
+service:
+  type: NodePort   
+  port: 80
+  targetPort: 8000
+  nodePort: 30000
+
+# Ingress configuration for the app.
+ingress:
+  enabled: false
+
+# Resource requests and limits.
+resources:
+  limits:
+    cpu: 1
+    memory: 1Gi
+  requests:
+    cpu: 500m
+    memory: 512Mi
+
+# Liveness and Readiness probes configuration.
+livenessProbe:
+  httpGet:
+    path: /
+    port: 8000
+  initialDelaySeconds: 40
+  periodSeconds: 15
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: 8000
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  timeoutSeconds: 3
+  failureThreshold: 3
+
+# Autoscaling configuration (disabled here).
+autoscaling:
+  enabled: false
+
+# Additional volumes and volumeMounts (optional).
+volumes: []
+volumeMounts: []
+
